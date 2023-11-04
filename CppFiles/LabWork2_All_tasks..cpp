@@ -1,6 +1,7 @@
 // Лабораторная работа 2
 #include <iostream>
 #include <cmath>
+#include <locale.h> 
 using namespace std;
 
 /* Задание 1
@@ -233,6 +234,7 @@ void num4(){
 }
 
 int main(){
+	setlocale(LC_ALL, "rus");
 	int task_N;
 	cout<<"Введите номер задачи: ";
 	cin>>task_N;
