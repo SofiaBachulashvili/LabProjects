@@ -186,7 +186,7 @@ int main()
 
                 // Если стек с операциями НЕ пуст, и приоритет текущей операции ниже или равен верхней в стеке с операциями
                 if (Stack_of_operators.size() != 0 && getRang(el) <= getRang(Stack_of_operators.top().type)) {
-                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { // Åñëè ôóíêöèÿ âåðíåò "false", òî ïðåêðàùàåì ðàáîòó
+                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { 
                         system("pause");
                         return 0;
                     }
@@ -202,7 +202,7 @@ int main()
             }
             if (el == ')') { // закрывающаяся скобка
                 while (Stack_of_operators.top().type != '(') {
-                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { //Åñëè ôóíêöèÿ âåðíåò "false", òî ïðåêðàùàåì ðàáîòó
+                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { 
                         system("pause");
                         return 0;
                     }
