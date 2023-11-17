@@ -7,10 +7,10 @@
 
 using namespace std;
 
-const double Pie = acos(-1); // число Пи
-const double E = exp(1); //число E
+const double Pie = acos(-1); // С‡РёСЃР»Рѕ РџРё
+const double E = exp(1); //С‡РёСЃР»Рѕ E
 
-//Обработка выражений с унарными минусами после скобок
+//РћР±СЂР°Р±РѕС‚РєР° РІС‹СЂР°Р¶РµРЅРёР№ СЃ СѓРЅР°СЂРЅС‹РјРё РјРёРЅСѓСЃР°РјРё РїРѕСЃР»Рµ СЃРєРѕР±РѕРє
 string Unary_minus(string Line) {
     int a;
     string Zero = "0";
@@ -26,17 +26,17 @@ string Unary_minus(string Line) {
     return Line;
 }
 
-//Структура для  описания любого числа или операции
+//РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ  РѕРїРёСЃР°РЅРёСЏ Р»СЋР±РѕРіРѕ С‡РёСЃР»Р° РёР»Рё РѕРїРµСЂР°С†РёРё
 struct Descripe_el
 {
-    char type; // "+", "-", "/", "*", "^" - для операций, для чисел - 0
-    double value; //Значение соответстует числу, для операторов 0
+    char type; // "+", "-", "/", "*", "^" - РґР»СЏ РѕРїРµСЂР°С†РёР№, РґР»СЏ С‡РёСЃРµР» - 0 
+    double value; //Р—РЅР°С‡РµРЅРёРµ СЃРѕРѕС‚РІРµС‚СЃС‚СѓРµС‚ С‡РёСЃР»Сѓ, РґР»СЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ 0
 };
 
 bool Math(stack <Descripe_el>& Stack_of_numbers, stack <Descripe_el>& Stack_of_operators, Descripe_el& item) {
     double a, b, c;
-    a = Stack_of_numbers.top().value; // a присваивается значение верхнего числа из стека с числами
-    Stack_of_numbers.pop(); //Удаляется верхнее число из стека с числами
+    a = Stack_of_numbers.top().value; // a РїСЂРёСЃРІР°РёРІР°РµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ РІРµСЂС…РЅРµРіРѕ С‡РёСЃР»Р° РёР· СЃС‚РµРєР° СЃ С‡РёСЃР»Р°РјРё
+    Stack_of_numbers.pop(); //РЈРґР°Р»СЏРµС‚СЃСЏ РІРµСЂС…РЅРµРµ С‡РёСЃР»Рѕ РёР· СЃС‚РµРєР° СЃ С‡РёСЃР»Р°РјРё
     switch (Stack_of_operators.top().type) {
 
     case '+':
@@ -45,7 +45,7 @@ bool Math(stack <Descripe_el>& Stack_of_numbers, stack <Descripe_el>& Stack_of_o
         c = a + b;
         item.type = '0';
         item.value = c;
-        Stack_of_numbers.push(item); //Результат операции кладется в стек с числами
+        Stack_of_numbers.push(item); //Р РµР·СѓР»СЊС‚Р°С‚ РѕРїРµСЂР°С†РёРё РєР»Р°РґРµС‚СЃСЏ РІ СЃС‚РµРє СЃ С‡РёСЃР»Р°РјРё
         Stack_of_operators.pop();
         break;
 
@@ -82,7 +82,7 @@ bool Math(stack <Descripe_el>& Stack_of_numbers, stack <Descripe_el>& Stack_of_o
     case '/':
         b = Stack_of_numbers.top().value;
         if (a == 0) {
-            cerr << "Ошибка: деление на ноль!" << "\n";
+            cerr << "РћС€РёР±РєР°: РґРµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ!" << "\n";
             return false;
         }
         else {
@@ -96,14 +96,14 @@ bool Math(stack <Descripe_el>& Stack_of_numbers, stack <Descripe_el>& Stack_of_o
         }
 
     default:
-        cerr << "\n" << "ОШИБКА!!!" << "\n";
+        cerr << "\n" << "РћРЁРР‘РљРђ!!!" << "\n";
         return false;
         break;
     }
     return true;
 }
 
-int getRang(char el) { // Приоритет операции
+int getRang(char el) { // РџСЂРёРѕСЂРёС‚РµС‚ РѕРїРµСЂР°С†РёРё
     if (el == '+' || el == '-')return 1;
     if (el == '*' || el == '/')return 2;
     if (el == '^')return 3;
@@ -112,43 +112,42 @@ int getRang(char el) { // Приоритет операции
 
 int main()
 {
-    //system("chcp 1251");
     setlocale(LC_ALL, "Russian");
     while (true) {
         system("cls");
 
-        cout << "  ОБОЗНАЧЕНИЯ : \n    число Пи - 'p'\n    число E - 'e' \n    перед 'p' и 'e' обязательно писать операцию\n\n  Введите пример: ";
+       cout << "  РћР‘РћР—РќРђР§Р•РќРРЇ : \n    С‡РёСЃР»Рѕ РџРё - 'p'\n    С‡РёСЃР»Рѕ E - 'e' \n    РїРµСЂРµРґ 'p' Рё 'e' РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РїРёСЃР°С‚СЊ РѕРїРµСЂР°С†РёСЋ\n\n  Р’РІРµРґРёС‚Рµ РїСЂРёРјРµСЂ: ";
 
         string str;
         getline(cin, str);
         str = Unary_minus(str);
         stringstream expression{ str };
 
-        char el; // текущий символ
+        char el; // С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР»
         double value;
-        bool minus = true; // унарный минус в начале строки
-        stack <Descripe_el> Stack_of_numbers; //Стек с числами
-        stack <Descripe_el> Stack_of_operators; //Стек с операциями
+        bool minus = true; // СѓРЅР°СЂРЅС‹Р№ РјРёРЅСѓСЃ РІ РЅР°С‡Р°Р»Рµ СЃС‚СЂРѕРєРё
+        stack <Descripe_el> Stack_of_numbers;  //РЎС‚РµРє СЃ С‡РёСЃР»Р°РјРё
+        stack <Descripe_el> Stack_of_operators; //РЎС‚РµРє СЃ РѕРїРµСЂР°С†РёСЏРјРё
         Descripe_el item;
         while (true) {
             el = expression.peek();
-            if (el == '\377')break; //Восьмеричная Escape последовательность  - конец строки
+            if (el == '\377')break; //Р’РѕСЃСЊРјРµСЂРёС‡РЅР°СЏ Escape РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ  - РєРѕРЅРµС† СЃС‚СЂРѕРєРё
 
-            if (el == ' ') { //Игнорирование пробелов
+            if (el == ' ') { //РРіРЅРѕСЂРёСЂРѕРІР°РЅРёРµ РїСЂРѕР±РµР»РѕРІ
                 expression.ignore();
                 continue;
             }
 
-            if (el == 'p') { // число Пи
+            if (el == 'p') { // С‡РёСЃР»Рѕ РџРё
                 item.type = '0';
                 item.value = Pie;
-                Stack_of_numbers.push(item); //Число кладется в стек с числами
+                Stack_of_numbers.push(item); //Р§РёСЃР»Рѕ РєР»Р°РґРµС‚СЃСЏ РІ СЃС‚РµРє СЃ С‡РёСЃР»Р°РјРё
                 minus = 0;
                 expression.ignore();
                 continue;
             }
 
-            if (el == 'e') { // число E
+            if (el == 'e') { // С‡РёСЃР»Рѕ E
                 item.type = '0';
                 item.value = E;
                 Stack_of_numbers.push(item);
@@ -157,7 +156,7 @@ int main()
                 continue;
             }
 
-            if (el >= '0' && el <= '9' || el == '-' && minus == 1) { // Прочитано число
+            if (el >= '0' && el <= '9' || el == '-' && minus == 1) { // РџСЂРѕС‡РёС‚Р°РЅРѕ С‡РёСЃР»Рѕ
                 expression >> value;
                 item.type = '0';
                 item.value = value;
@@ -166,43 +165,44 @@ int main()
                 continue;
             }
 
-            if (el == '+' || el == '-' && minus == 0 || el == '*' || el == '/' || el == '^') { // Прочитана операция
-                if (Stack_of_operators.size() == 0) { // Если стек с операциями пуст
+            // РџСЂРѕС‡РёС‚Р°РЅР° РѕРїРµСЂР°С†РёСЏ
+            if (el == '+' || el == '-' && minus == 0 || el == '*' || el == '/' || el == '^') { 
+                if (Stack_of_operators.size() == 0) { // Р•СЃР»Рё СЃС‚РµРє СЃ РѕРїРµСЂР°С†РёСЏРјРё РїСѓСЃС‚
                     item.type = el;
                     item.value = 0;
-                    Stack_of_operators.push(item); // Операция кладется в стек с операциями
+                    Stack_of_operators.push(item); // РћРїРµСЂР°С†РёСЏ РєР»Р°РґРµС‚СЃСЏ РІ СЃС‚РµРє СЃ РѕРїРµСЂР°С†РёСЏРјРё
                     expression.ignore();
                     continue;
                 }
 
-                //Если стек с операциями НЕ пуст, но приоритет текущей операции выше верхней в стеке с операциями
+                //Р•СЃР»Рё СЃС‚РµРє СЃ РѕРїРµСЂР°С†РёСЏРјРё РќР• РїСѓСЃС‚, РЅРѕ РїСЂРёРѕСЂРёС‚РµС‚ С‚РµРєСѓС‰РµР№ РѕРїРµСЂР°С†РёРё РІС‹С€Рµ РІРµСЂС…РЅРµР№ РІ СЃС‚РµРєРµ СЃ РѕРїРµСЂР°С†РёСЏРјРё
                 if (Stack_of_operators.size() != 0 && getRang(el) > getRang(Stack_of_operators.top().type)) {
                     item.type = el;
                     item.value = 0;
-                    Stack_of_operators.push(item); // Операция кладется в стек с операциями
+                    Stack_of_operators.push(item); 
                     expression.ignore();
                     continue;
                 }
 
-                // Если стек с операциями НЕ пуст, и приоритет текущей операции ниже или равен верхней в стеке с операциями
+                // Р•СЃР»Рё СЃС‚РµРє СЃ РѕРїРµСЂР°С†РёСЏРјРё РќР• РїСѓСЃС‚, Рё РїСЂРёРѕСЂРёС‚РµС‚ С‚РµРєСѓС‰РµР№ РѕРїРµСЂР°С†РёРё РЅРёР¶Рµ РёР»Рё СЂР°РІРµРЅ РІРµСЂС…РЅРµР№ РІ СЃС‚РµРєРµ СЃ РѕРїРµСЂР°С†РёСЏРјРё
                 if (Stack_of_operators.size() != 0 && getRang(el) <= getRang(Stack_of_operators.top().type)) {
-                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { // Если функция вернет "false", то прекращаем работу
+                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { // Г…Г±Г«ГЁ ГґГіГ­ГЄГ¶ГЁГї ГўГҐГ°Г­ГҐГІ "false", ГІГ® ГЇГ°ГҐГЄГ°Г Г№Г ГҐГ¬ Г°Г ГЎГ®ГІГі
                         system("pause");
                         return 0;
                     }
                     continue;
                 }
             }
-            if (el == '(') { // открывающаяся скобка
+            if (el == '(') { // РћС‚РєСЂС‹РІР°СЋС‰Р°СЏСЃСЏ СЃРєРѕР±РєР°
                 item.type = el;
                 item.value = 0;
-                Stack_of_operators.push(item); //Операция кладется в стек с операциями
+                Stack_of_operators.push(item);
                 expression.ignore();
                 continue;
             }
-            if (el == ')') { // закрывающаяся скобка
+            if (el == ')') { // Р·Р°РєСЂС‹РІР°СЋС‰Р°СЏСЃСЏ СЃРєРѕР±РєР°
                 while (Stack_of_operators.top().type != '(') {
-                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { //Если функция вернет "false", то прекращаем работу
+                    if (Math(Stack_of_numbers, Stack_of_operators, item) == false) { //Г…Г±Г«ГЁ ГґГіГ­ГЄГ¶ГЁГї ГўГҐГ°Г­ГҐГІ "false", ГІГ® ГЇГ°ГҐГЄГ°Г Г№Г ГҐГ¬ Г°Г ГЎГ®ГІГі
                         system("pause");
                         return 0;
                     }
@@ -212,8 +212,8 @@ int main()
                 expression.ignore();
                 continue;
             }
-            else { //введен посторонний символ
-                cout << "\n	Пример введен некорректно!\n";
+            else { //РІРІРµРґРµРЅ РїРѕСЃС‚РѕСЂРѕРЅРЅРёР№ СЃРёРјРІРѕР»
+                cout << "\n	РџСЂРёРјРµСЂ РІРІРµРґРµРЅ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ!\n";
                 system("pause");
                 return 0;
             }
@@ -225,7 +225,7 @@ int main()
             }
             else continue;
         }
-        std::cout << "  Результат: " << Stack_of_numbers.top().value << "\n";
+        std::cout << "  Р РµР·СѓР»СЊС‚Р°С‚: " << Stack_of_numbers.top().value << "\n";
         system("pause");
     }
     return 0;
