@@ -3,27 +3,28 @@
 #include <locale.h>
 using namespace std;
 
-struct Node { //—ÚÛÍÚÛ‡, ÓÔËÒ˚‚‡˛˘‡ˇ ÒÔËÒÓÍ
+struct Node { //–°—Ç—Ä—É–∫—Ç—É—Ä–∞, –æ–ø–∏—Å—ã–≤–∞—é—â–∞—è —Å–ø–∏—Å–æ–∫
 	int data;
-	Node* next; //”Í‡Á‡ÚÂÎ¸ Ì‡ ‡‰ÂÒ ÒÎÂ‰Û˛˘Â„Ó ˝ÎÂÏÂÌÚ‡ ÒÔËÒÍ‡
+	Node* next; //–£–∫–∞–∑–∞—Ç–µ–ª—å –Ω–∞ –∞–¥—Ä–µ—Å —Å–ª–µ–¥—É—é—â–µ–≥–æ —ç–ª–µ–º–µ–Ω—Ç–∞ —Å–ø–∏—Å–∫–∞
 };
 
 class LinkedList {
-	public:
-		LinkedList();
-		LinkedList(int data);
-		~LinkedList(); //‰ÂÒÚÛÍÚÓ ÒÔËÒÍ‡
+public:
+	LinkedList();
+	LinkedList(int data);
+	~LinkedList(); //–¥–µ—Å—Ç—Ä—É–∫—Ç–æ—Ä —Å–ø–∏—Å–∫–∞
 
-		bool add_element(int data);
-		bool find_element(int data);
-		bool insert_element(int data, int position);
-		bool delete_element(int value);
-		void Write_list();//‘ÛÌÍˆËˇ ‚˚‚Ó‰‡ ÒÔËÒÍ‡ ‚ ÍÓÌÒÓÎ¸
+	bool add_element(int data);
+	bool find_element(int data);
+	bool insert_element(int data, int position);
+	bool delete_el_position(int position);
+	bool delete_element(int data);
+	void Write_list();//–§—É–Ω–∫—Ü–∏—è –≤—ã–≤–æ–¥–∞ —Å–ø–∏—Å–∫–∞ –≤ –∫–æ–Ω—Å–æ–ª—å
 
 
-	private: //”Í‡Á‡ÚÂÎË Ì‡ ‡‰ÂÒ‡ Ì‡˜‡Î‡ ÒÔËÒÍ‡ Ë Â„Ó ÍÓÌˆ‡
-		Node* first;
-		Node* last;
+private: //–£–∫–∞–∑–∞—Ç–µ–ª–∏ –Ω–∞ –∞–¥—Ä–µ—Å–∞ –Ω–∞—á–∞–ª–∞ —Å–ø–∏—Å–∫–∞ –∏ –µ–≥–æ –∫–æ–Ω—Ü–∞
+	Node* first;
+	Node* last;
 };
 
 LinkedList::LinkedList() {
@@ -32,14 +33,14 @@ LinkedList::LinkedList() {
 };
 
 LinkedList::LinkedList(int data) {
-	Node* nd = new Node{ data }; //¬˚‰ÂÎÂÌËÂ Ô‡ÏˇÚË ÔÓ‰ ÌÓ‚˚È ˝ÎÂÏÂÌÚ ÒÚÛÍÚÛ˚
+	Node* nd = new Node{ data }; //–í—ã–¥–µ–ª–µ–Ω–∏–µ –ø–∞–º—è—Ç–∏ –ø–æ–¥ –Ω–æ–≤—ã–π —ç–ª–µ–º–µ–Ω—Ç —Å—Ç—Ä—É–∫—Ç—É—Ä—ã
 	first = nd;
 	last = nd;
 	last->next = nullptr;
 };
 
 bool LinkedList::add_element(int data) {
-	Node* nd = new Node{ data, nullptr }; 
+	Node* nd = new Node{ data, nullptr };
 	if (last == nullptr) {
 		first = nd;
 		last = nd;
@@ -56,11 +57,11 @@ bool LinkedList::add_element(int data) {
 bool LinkedList::find_element(int data) {
 	if (last != nullptr) {
 		Node* current_el = first;
-		while (current_el != nullptr){
+		while (current_el != nullptr) {
 			if (current_el->data == data) return true;
 			current_el = current_el->next;
 		}
-	} 
+	}
 	return false;
 };
 
@@ -70,12 +71,12 @@ bool LinkedList::insert_element(int data, int position) {
 		size_t i = 0;
 		while (current_el != nullptr) {
 			if (i == position - 1) {
-				Node* nd = new Node{ data, current_el->next }; // Ò‚ˇÁ¸ ÏÂÊ‰Û data Ë current_el->next
+				Node* nd = new Node{ data, current_el->next }; // —Å–≤—è–∑—å –º–µ–∂–¥—É data –∏ current_el->next
 				current_el->next = nd;
 				return true;
 			}
-		current_el = current_el->next;
-		i += 1;
+			current_el = current_el->next;
+			i += 1;
 		}
 	}
 	return false;
@@ -92,7 +93,7 @@ void LinkedList::Write_list() {
 	return;
 }
 
-bool LinkedList::delete_element(int position) {
+bool LinkedList::delete_el_position(int position) {
 	if (position == 0) {
 		Node* el = first->next;
 		delete first;
@@ -103,7 +104,7 @@ bool LinkedList::delete_element(int position) {
 		Node* el = nullptr;
 		size_t i = 0;
 		Node* current_el = first;
-		while (i != position-1) {
+		while (i != position - 1) {
 			++i;
 			current_el = current_el->next;
 		}
@@ -115,13 +116,44 @@ bool LinkedList::delete_element(int position) {
 	return false;
 }
 
+bool LinkedList::delete_element(int data){
+	if (last != nullptr) {
+		Node* current_el = first;
+		Node* previous = nullptr;
+		while (current_el != nullptr) {
+			if (current_el->data == data) {
+				if (current_el == first) {
+					first = first->next;
+					delete current_el;
+					current_el = first;
+					continue;
+				}
+				else if (current_el == last) {
+					last = previous;
+					last->next = nullptr;
+					delete current_el;
+					break;
+				}
+				previous->next = current_el->next;
+				delete current_el;
+				current_el = previous->next;
+				continue;
+			}
+			previous = current_el;
+			current_el = current_el->next;
+		}
+		return true;
+	}
+	return false;
+}
+
 LinkedList::~LinkedList() {
 	if (last != nullptr) {
 		Node* current_el = first;
 		while (current_el != nullptr) {
 			Node* nd = new Node{ 0, current_el->next };
 			delete current_el;
-			first = first->next; //—ÏÂÌ‡ ‡‰ÂÒ‡ Ì‡˜‡Î‡ Ì‡ ‡‰ÂÒ ÒÎÂ‰Û˛˘Â„Ó ˝ÎÂÏÂÌÚ‡ 
+			first = first->next; //–°–º–µ–Ω–∞ –∞–¥—Ä–µ—Å–∞ –Ω–∞—á–∞–ª–∞ –Ω–∞ –∞–¥—Ä–µ—Å —Å–ª–µ–¥—É—é—â–µ–≥–æ —ç–ª–µ–º–µ–Ω—Ç–∞ 
 			current_el = first;
 		}
 	}
@@ -145,12 +177,17 @@ int main() {
 	cout << " LIST.insert_list(22, 3) : " << LIST.insert_element(22, 3) << "\n";
 	LIST.Write_list();
 
-	cout << " delete element position = 0 : " << LIST.delete_element(0) << "\n";
+	cout << " delete element position = 0 : " << LIST.delete_el_position(0) << "\n";
 	LIST.Write_list();
 
-	cout<<" delete element position = 3 : " <<LIST.delete_element(3)<< "\n";
+	cout << " delete element position = 3 : " << LIST.delete_el_position(3) << "\n";
 	LIST.Write_list();
-	
+
+	int c;
+	c = 1;
+	cout << " delete element value = " << c << " : " << LIST.delete_element(c) << "\n";
+	LIST.Write_list();
+
 	LIST.~LinkedList();
 	return 0;
 }
