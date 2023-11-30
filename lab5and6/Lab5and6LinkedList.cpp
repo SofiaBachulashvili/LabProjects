@@ -3,25 +3,25 @@
 #include <locale.h>
 using namespace std;
 
-struct Node { //Структура, описывающая список
+struct Node { //РЎС‚СЂСѓРєС‚СѓСЂР°, РѕРїРёСЃС‹РІР°СЋС‰Р°СЏ СЃРїРёСЃРѕРє
 	int data;
-	Node* next; //Указатель на адрес следующего элемента списка
+	Node* next; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° Р°РґСЂРµСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°
 };
 
 class LinkedList {
 	public:
 		LinkedList();
 		LinkedList(int data);
-		~LinkedList(); //деструктор списка
+		~LinkedList(); //РґРµСЃС‚СЂСѓРєС‚РѕСЂ СЃРїРёСЃРєР°
 
 		bool add_element(int data);
 		bool find_element(int data);
 		bool insert_element(int data, int position);
 		bool delete_element(int value);
-		void Write_list();//Функция вывода списка в консоль
+		void Write_list();//Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° СЃРїРёСЃРєР° РІ РєРѕРЅСЃРѕР»СЊ
 
 
-	private: //Указатели на адреса начала списка и его конца
+	private: //РЈРєР°Р·Р°С‚РµР»Рё РЅР° Р°РґСЂРµСЃР° РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР° Рё РµРіРѕ РєРѕРЅС†Р°
 		Node* first;
 		Node* last;
 };
@@ -32,7 +32,7 @@ LinkedList::LinkedList() {
 };
 
 LinkedList::LinkedList(int data) {
-	Node* nd = new Node{ data }; //Выделение памяти под новый элемент структуры
+	Node* nd = new Node{ data }; //Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ СЃС‚СЂСѓРєС‚СѓСЂС‹
 	first = nd;
 	last = nd;
 	last->next = nullptr;
@@ -70,7 +70,7 @@ bool LinkedList::insert_element(int data, int position) {
 		size_t i = 0;
 		while (current_el != nullptr) {
 			if (i == position - 1) {
-				Node* nd = new Node{ data, current_el->next }; // связь между data и current_el->next
+				Node* nd = new Node{ data, current_el->next }; // СЃРІСЏР·СЊ РјРµР¶РґСѓ data Рё current_el->next
 				current_el->next = nd;
 				return true;
 			}
@@ -121,7 +121,7 @@ LinkedList::~LinkedList() {
 		while (current_el != nullptr) {
 			Node* nd = new Node{ 0, current_el->next };
 			delete current_el;
-			first = first->next; //Смена адреса начала на адрес следующего элемента 
+			first = first->next; //РЎРјРµРЅР° Р°РґСЂРµСЃР° РЅР°С‡Р°Р»Р° РЅР° Р°РґСЂРµСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° 
 			current_el = first;
 		}
 	}
