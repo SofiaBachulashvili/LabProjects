@@ -380,6 +380,7 @@ void num9()
 	string s, a;
 	a = "a";
 	cout << "Введите строку: ";
+	cin.ignore(); // it's nessesary for Visual Studio
 	getline(cin, s);
 	cout << endl;
 	int c = 0;
